@@ -14,7 +14,6 @@ import { FC, useEffect } from "react";
 import { Menu2 } from "tabler-icons-react";
 
 import { LayoutErrorBoundary } from "../LayoutErrorBoundary";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { CustomLayout } from "next";
@@ -39,7 +38,7 @@ export const DashboardLayout: CustomLayout = (page) => {
   return (
     <>
       <Head>
-        <title>bjb - LMS Komersial</title>
+        <title>DeHoli Store App</title>
       </Head>
       <AppShell
         padding="sm"

@@ -1,6 +1,9 @@
 const PATH = {
   index: "/",
   notification: "/notification",
+  UMKM_actionSetting: "/umkm/user-management/settings/action",
+  UMKM_pagesSetting: "/umkm/user-management/settings/pages",
+  UMKM_setupPageAction: "/umkm/user-management/settings/setupPageAction",
 } as const;
 
 export const getPath = (pathKey: keyof typeof PATH, ...args: string[]) => {
