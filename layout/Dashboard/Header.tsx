@@ -1,3 +1,4 @@
+import { Colors } from "@/lib/const/color";
 import { getPath } from "@/lib/const/path";
 import {
   ActionIcon,
@@ -6,22 +7,27 @@ import {
   Box,
   Flex,
   Group,
+  HoverCard,
   Indicator,
   Menu,
   Text,
 } from "@mantine/core";
+import { InputPlaceholder } from "@mantine/core/lib/Input/InputPlaceholder/InputPlaceholder";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Bell, Logout, Search } from "tabler-icons-react";
+import { notifications } from "@mantine/notifications";
+import { IconX } from "@tabler/icons-react";
+import { showNotification, updateNotification } from "@mantine/notifications";
 
 export const Header: FC<{ left: ReactNode }> = ({ left }) => {
   return (
     <Box
       component="header"
       sx={() => ({
-        height: "10vh",
+        height: "8vh",
       })}
       className="noPrint"
     >
@@ -29,7 +35,6 @@ export const Header: FC<{ left: ReactNode }> = ({ left }) => {
         component="div"
         sx={(theme) => ({
           padding: `${theme.spacing.md} ${theme.spacing.md}`,
-          // height: "10%",
           borderBottom: `1px solid ${theme.colors.gray[2]}`,
           backgroundColor: theme.white,
         })}
@@ -37,8 +42,8 @@ export const Header: FC<{ left: ReactNode }> = ({ left }) => {
         <Group spacing="md" noWrap>
           {left}
           <SearchForm />
-          {/* <Notification /> */}
-          <UserMenu />
+          <NotificationHoverCard />
+          <UserMenu userName="Doni Hadimas" position="Administrator" />
         </Group>
       </Box>
     </Box>
@@ -49,12 +54,15 @@ const SearchForm: FC = () => {
   return (
     <Autocomplete
       data={[]}
-      size="lg"
-      placeholder="Search"
+      size="md"
+      placeholder="Produk Tidak ditemukan? Cari Disini!"
       icon={<Search size={18} />}
       styles={{
         root: { flexGrow: 1 },
-        input: { border: 0, backgroundColor: "transparent" },
+        input: {
+          border: 0,
+          backgroundColor: "transparent",
+        },
       }}
       onChange={(value) => {}}
     />
@@ -63,13 +71,42 @@ const SearchForm: FC = () => {
 
 const Notification: FC = () => {
   return (
-    <Indicator inline size={14} offset={4} color="red" withBorder>
+    <Indicator inline size={10} offset={4} color="red" withBorder>
       <Link href={getPath("notification")} passHref>
-        <ActionIcon component="a" radius="xl" size={40}>
-          <Bell />
+        <ActionIcon
+          component="a"
+          radius="xl"
+          size={40}
+          color={Colors.light_blue}
+        >
+          <Bell size={20} />
         </ActionIcon>
       </Link>
     </Indicator>
+  );
+};
+
+const NotificationHoverCard: FC = () => {
+  return (
+    <Group>
+      <HoverCard>
+        <HoverCard.Target>
+          <Indicator inline size={10} offset={4} color="red" withBorder>
+            <ActionIcon
+              component="a"
+              radius="xl"
+              size={40}
+              color={Colors.light_blue}
+            >
+              <Bell size={20} />
+            </ActionIcon>
+          </Indicator>
+        </HoverCard.Target>
+        <HoverCard.Dropdown>
+          <Text size="sm">Ini adalah Notification</Text>
+        </HoverCard.Dropdown>
+      </HoverCard>
+    </Group>
   );
 };
 
@@ -84,11 +121,8 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
   return (
     <>
       <Menu
-        // size="lg"
         position="bottom"
-        // placement="end"
         transitionProps={{ transition: "pop-top-right" }}
-        // transition="pop-top-right"
         styles={(theme: any) => ({
           label: { fontSize: theme.fontSizes.sm },
           itemLabel: { fontSize: theme.fontSizes.sm },
@@ -100,9 +134,9 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
           </Text>
           <Text
             sx={{
-              color: "gray",
-              fontSize: "10pt",
-              fontWeight: "bold",
+              color: Colors.primary_gray,
+              fontSize: "9pt",
+              fontWeight: "normal",
               textAlign: "right",
               fontStyle: "italic",
             }}
@@ -120,7 +154,20 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Label>Application</Menu.Label>
-          <Menu.Item icon={<Logout size={14} />} onClick={() => {}}>
+          <Menu.Item
+            icon={<Logout size={14} />}
+            onClick={() => {
+              showNotification({
+                id: "logout",
+                withCloseButton: true,
+                autoClose: 2000,
+                title: "Feature still in development",
+                message: "coming soon...",
+                loading: true,
+                color: "blue",
+              });
+            }}
+          >
             Logout
           </Menu.Item>
         </Menu.Dropdown>
