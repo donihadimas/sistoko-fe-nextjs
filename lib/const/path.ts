@@ -1,9 +1,26 @@
 const PATH = {
-  index: "/",
-  notification: "/notification",
-  UMKM_actionSetting: "/umkm/user-management/settings/action",
-  UMKM_pagesSetting: "/umkm/user-management/settings/pages",
-  UMKM_setupPageAction: "/umkm/user-management/settings/setupPageAction",
+  dashboard: "/",
+
+  // ? Transaction
+  transactions_sales: "/transactions/sales",
+  transactions_purchase: "/transactions/purchase",
+  // ? Transaction
+
+  // ? Report
+  report: "/report",
+  // ? Report
+
+  // ? Master Data
+  md_management_category_product: "/master-data/management-category-product",
+  md_management_product: "/master-data/management-product",
+  md_management_supplier: "/master-data/management-supplier",
+  md_management_stock: "/master-data/management-stock",
+  md_management_employee: "/master-data/management-employee",
+  // ? Master Data
+
+  // ? Settings
+  settings: "/settings",
+  // ? Settings
 } as const;
 
 export const getPath = (pathKey: keyof typeof PATH, ...args: string[]) => {

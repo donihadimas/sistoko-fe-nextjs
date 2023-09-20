@@ -12,15 +12,11 @@ import {
   Menu,
   Text,
 } from "@mantine/core";
-import { InputPlaceholder } from "@mantine/core/lib/Input/InputPlaceholder/InputPlaceholder";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Bell, Logout, Search } from "tabler-icons-react";
-import { notifications } from "@mantine/notifications";
-import { IconX } from "@tabler/icons-react";
-import { showNotification, updateNotification } from "@mantine/notifications";
+import { Bell, Logout, Search, Settings } from "tabler-icons-react";
+import { showNotification } from "@mantine/notifications";
 
 export const Header: FC<{ left: ReactNode }> = ({ left }) => {
   return (
@@ -66,23 +62,6 @@ const SearchForm: FC = () => {
       }}
       onChange={(value) => {}}
     />
-  );
-};
-
-const Notification: FC = () => {
-  return (
-    <Indicator inline size={10} offset={4} color="red" withBorder>
-      <Link href={getPath("notification")} passHref>
-        <ActionIcon
-          component="a"
-          radius="xl"
-          size={40}
-          color={Colors.light_blue}
-        >
-          <Bell size={20} />
-        </ActionIcon>
-      </Link>
-    </Indicator>
   );
 };
 
@@ -154,6 +133,22 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Label>Application</Menu.Label>
+          <Menu.Item
+            icon={<Settings size={14} />}
+            onClick={() => {
+              showNotification({
+                id: "settings",
+                withCloseButton: true,
+                autoClose: 2000,
+                title: "Feature still in development",
+                message: "coming soon...",
+                loading: true,
+                color: "blue",
+              });
+            }}
+          >
+            Settings
+          </Menu.Item>
           <Menu.Item
             icon={<Logout size={14} />}
             onClick={() => {
