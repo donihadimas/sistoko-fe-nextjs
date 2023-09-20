@@ -21,6 +21,7 @@ interface LinksGroupProps {
   links?: {
     label: string;
     href: string;
+    icon: string;
     parameter?: Array<Record<string, string>>;
     query?: string;
   }[];

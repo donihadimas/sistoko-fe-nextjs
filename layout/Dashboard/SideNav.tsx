@@ -13,7 +13,7 @@ import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { filterMenuByClaims } from "./filter-menu";
-import { MenuItem, menuItems } from "./menu";
+import { MenuItem } from "./menu";
 import { ChevronLeft, ChevronRight } from "tabler-icons-react";
 import router from "next/router";
 import { Colors } from "@/lib/const/color";
@@ -201,7 +201,10 @@ export const SideNav: FC<{ className?: string }> = ({ className }) => {
             className={classes.header}
             position={collapsed ? "left" : "center"}
           >
-            <Link href={getPath("index")} style={{ textDecoration: "none" }}>
+            <Link
+              href={getPath("dashboard")}
+              style={{ textDecoration: "none" }}
+            >
               <span className={classes.logo}>
                 <span className={classes.linkLabel} style={{ fontSize: 20 }}>
                   DeHoli Store
@@ -213,6 +216,7 @@ export const SideNav: FC<{ className?: string }> = ({ className }) => {
               color={Colors.light_blue}
               onClick={handlers.toggle}
               opened={collapsed}
+              title={collapsed ? "Close Navigation" : "Open Navigation"}
             />
           </Group>
           {MenuItem?.map((item: any, idx: number) => {
