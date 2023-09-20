@@ -1,0 +1,10 @@
+/* CSS untuk mengubah ukuran bilah geser */
+::-webkit-scrollbar {
+  width: 8px; /* Lebar bilah geser horizontal */
+  height: 8px; /* Tinggi bilah geser vertikal */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Warna thumb bilah geser */
+  border-radius: 4px; /* Sudut radius thumb */
+}
