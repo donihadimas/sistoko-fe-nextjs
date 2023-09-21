@@ -17,7 +17,7 @@ const ManagementCategoryProduct: CustomNextPage = ({
       <PageContainer title="Manajemen Kategori Produk" fluid>
         <Stack spacing="md">
           <PageContent title="">
-            <Text>Manajemen Kategori Produk Page</Text>
+            <Text>Halaman Manajemen Kategori Produk</Text>
           </PageContent>
         </Stack>
       </PageContainer>
