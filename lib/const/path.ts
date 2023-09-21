@@ -1,6 +1,7 @@
 const PATH = {
   dashboard: "/dashboard",
 
+
   // ? Transaction
   transactions_sales: "/transactions/sales",
   transactions_purchase: "/transactions/purchase",
