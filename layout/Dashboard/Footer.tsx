@@ -1,4 +1,5 @@
-import { Box, Group } from "@mantine/core";
+import { Colors } from "@/lib/const/color";
+import { Box, Group, Text } from "@mantine/core";
 import { FC } from "react";
 export const Footer: FC<{}> = () => {
   return (
@@ -16,9 +17,14 @@ export const Footer: FC<{}> = () => {
         })}
       >
         <Group spacing="md" noWrap position="right">
-          <span style={{ color: "blue", fontWeight: "bold" }}>
-            DeHoli @ 2023
-          </span>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: "16px",
+            }}
+          >
+            DeHoli Store @ 2023 - All Rights Reserved
+          </Text>
         </Group>
       </Box>
     </>
