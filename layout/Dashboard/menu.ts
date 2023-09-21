@@ -60,6 +60,12 @@ export const MenuItem = [
         href: getPath("md_management_stock"),
         parameter: { action: "list" },
       },
+      {
+        id: "md_management_employee",
+        label: "Manajemen Karyawan",
+        href: getPath("md_management_employee"),
+        parameter: { action: "list" },
+      },
     ],
   },
 ];

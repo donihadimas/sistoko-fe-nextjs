@@ -136,15 +136,7 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
           <Menu.Item
             icon={<Settings size={14} />}
             onClick={() => {
-              showNotification({
-                id: "settings",
-                withCloseButton: true,
-                autoClose: 2000,
-                title: "Feature still in development",
-                message: "coming soon...",
-                loading: true,
-                color: "blue",
-              });
+              router.push(getPath("settings"));
             }}
           >
             Settings

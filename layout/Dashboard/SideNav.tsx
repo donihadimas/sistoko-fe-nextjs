@@ -138,7 +138,7 @@ export const useStyles = createStyles<
     },
     subLinkActive: {
       ...theme.fn.focusStyles(),
-      width: "80%",
+      width: "88%",
       display: params.opened && params.collapsed ? "flex" : "none",
       alignItems: "center",
       columnGap: theme.spacing.sm,

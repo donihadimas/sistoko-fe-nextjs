@@ -1,10 +1,14 @@
 import { CustomNextPage } from "next";
 import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
-import { Center, Stack, Title } from "@mantine/core";
-import { PageContent } from "@/components/core/sidebar/PageContent";
+import { useRouter } from "next/router";
+import { getPath } from "@/lib/const/path";
+import { useEffect } from "react";
 
 const Index: CustomNextPage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.push(getPath("dashboard"));
+  }, []);
   return <></>;
 };
 Index.getLayout = DashboardLayout;
