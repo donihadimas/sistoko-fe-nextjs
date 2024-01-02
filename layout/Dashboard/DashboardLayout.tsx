@@ -38,7 +38,8 @@ export const DashboardLayout: CustomLayout = (page) => {
   return (
     <>
       <Head>
-        <title>DeHoli Store App</title>
+        <title>DeHoli Super App</title>
+        <link rel="icon" href="/favicon.png" sizes="100x100" />
       </Head>
       <AppShell
         padding="sm"
