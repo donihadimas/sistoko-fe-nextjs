@@ -1,19 +1,25 @@
+import { showCurrentDateTime } from "@/utils/formatter/datetimeFormater";
 import {
   Anchor,
   Breadcrumbs,
   Container,
   ContainerProps,
+  Group,
+  SimpleGrid,
   Space,
+  Text,
   Title,
 } from "@mantine/core";
+
 import Link from "next/link";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 
 type PageContainerProps = {
   children: ReactNode;
   ContextProvider?: any;
   title: string;
   items?: { label: string; href: string }[];
+  withTime?: boolean;
 } & Pick<ContainerProps, "fluid">;
 
 export const PageContainer: FC<PageContainerProps> = ({
@@ -22,7 +28,15 @@ export const PageContainer: FC<PageContainerProps> = ({
   items,
   fluid,
   ContextProvider,
+  withTime = false,
 }) => {
+  const [currentTime, setCurrentTime] = useState("");
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(showCurrentDateTime("dddd, Do MMMM YYYY, HH:MM:ss"));
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <>
       {ContextProvider ? (
@@ -38,7 +52,10 @@ export const PageContainer: FC<PageContainerProps> = ({
               </Breadcrumbs>
             ) : null}
 
-            <Title order={1}>{title}</Title>
+            <SimpleGrid cols={2}>
+              <Title order={1}>{title}</Title>
+              <Text size={"sm"}>{currentTime}</Text>
+            </SimpleGrid>
 
             <Space h="xl" />
 
@@ -46,7 +63,7 @@ export const PageContainer: FC<PageContainerProps> = ({
           </Container>
         </ContextProvider>
       ) : (
-        <Container px={0} fluid={fluid}>
+        <Container px={0} py={"sm"} fluid={fluid}>
           {items && items.length > 0 ? (
             <Breadcrumbs>
               {items.map((item) => (
@@ -57,9 +74,12 @@ export const PageContainer: FC<PageContainerProps> = ({
             </Breadcrumbs>
           ) : null}
 
-          <Title order={1}>{title}</Title>
+          <Group position="apart">
+            <Title order={2}>{title}</Title>
+            {withTime && <Text size={"sm"}>{currentTime}</Text>}
+          </Group>
 
-          <Space h="xl" />
+          <Space h={"xs"} />
 
           {children}
         </Container>

@@ -19,6 +19,7 @@ import router from "next/router";
 import { Colors } from "@/lib/const/color";
 import { LinksGroup } from "@/components/core/sidebar/LinksGroup";
 import { getPath } from "@/lib/const/path";
+import Image from "next/image";
 
 export const useStyles = createStyles<
   string,
@@ -80,9 +81,9 @@ export const useStyles = createStyles<
       borderStartStartRadius: "10px",
       "&:hover": {
         paddingRight: "34px",
-        backgroundColor: Colors.light_blue_transparent,
-        color: Colors.light_blue,
-        borderRight: `5px solid ${Colors.light_blue}`,
+        backgroundColor: Colors.primary_gold_transparent,
+        color: Colors.primary_gold,
+        borderRight: `5px solid ${Colors.primary_gold}`,
       },
       transition: params?.collapsed ? "width 0.2s linear" : "width 0.2s linear",
     },
@@ -98,7 +99,7 @@ export const useStyles = createStyles<
       color: Colors.primary_gray,
       padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
       borderRadius: theme.radius.sm,
-      fontWeight: 500,
+      fontWeight: 600,
       borderLeft: `1px solid ${
         theme.colorScheme === "light" ? theme.colors.dark[4] : Colors.hover_gray
       }`,
@@ -125,15 +126,15 @@ export const useStyles = createStyles<
       padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
       paddingLeft: params?.collapsed ? 31 : 0,
       marginLeft: params?.collapsed ? 30 : 0,
-      fontWeight: 500,
+      fontWeight: 600,
       cursor: "pointer",
       borderEndStartRadius: "10px",
       borderStartStartRadius: "10px",
       "&:hover": {
         paddingRight: "34px",
-        backgroundColor: Colors.light_blue_transparent,
-        color: Colors.light_blue,
-        borderRight: `5px solid ${Colors.light_blue}`,
+        backgroundColor: Colors.primary_gold_transparent,
+        color: Colors.primary_gold,
+        borderRight: `5px solid ${Colors.primary_gold}`,
       },
     },
     subLinkActive: {
@@ -148,17 +149,17 @@ export const useStyles = createStyles<
       paddingLeft: params?.collapsed ? 31 : 0,
       marginLeft: params?.collapsed ? 30 : 0,
       borderRadius: theme.radius.sm,
-      fontWeight: 500,
+      fontWeight: 700,
       cursor: "pointer",
       borderEndStartRadius: "10px",
       borderStartStartRadius: "10px",
-      backgroundColor: Colors.light_blue_transparent,
-      color: Colors.light_blue,
-      borderRight: `5px solid ${Colors.light_blue}`,
+      backgroundColor: Colors.primary_gold_transparent,
+      color: Colors.primary_gold,
+      borderRight: `5px solid ${Colors.primary_gold}`,
       transition: params?.collapsed ? "width 0.2s linear" : "width 0.2s linear",
     },
     linkActive: {
-      fontWeight: 500,
+      fontWeight: 700,
       display: "block",
       width: params.collapsed ? "100%" : 0,
       textDecoration: "none",
@@ -167,9 +168,9 @@ export const useStyles = createStyles<
       fontSize: theme.fontSizes.sm,
       borderEndStartRadius: "10px",
       borderStartStartRadius: "10px",
-      backgroundColor: Colors.light_blue_transparent,
-      color: Colors.light_blue,
-      borderRight: `5px solid ${Colors.light_blue}`,
+      backgroundColor: Colors.primary_gold_transparent,
+      color: Colors.primary_gold,
+      borderRight: `5px solid ${Colors.primary_gold}`,
       transition: params?.collapsed ? "width 0.2s linear" : "width 0.2s linear",
     },
     linkIcon: {
@@ -189,7 +190,13 @@ export const useStyles = createStyles<
 });
 
 export const SideNav: FC<{ className?: string }> = ({ className }) => {
-  const [collapsed, handlers] = useDisclosure(true);
+  const [collapsed, handlers] = useDisclosure(false);
+  //  todo ganti dengan redux kalo sudah di perlukan
+  const [isSideNavCollapsed, setIsSideNavCollapsed] = useState(true);
+  const toggleSideNav = () => {
+    setIsSideNavCollapsed(!isSideNavCollapsed);
+  };
+  //  todo ganti jadi redux kalo sudah di perlukan
   const { classes, cx, theme } = useStyles({ collapsed });
   const ChevronIcon = theme.dir === "ltr" ? ChevronRight : ChevronLeft;
 
@@ -206,14 +213,21 @@ export const SideNav: FC<{ className?: string }> = ({ className }) => {
               style={{ textDecoration: "none" }}
             >
               <span className={classes.logo}>
-                <span className={classes.linkLabel} style={{ fontSize: 20 }}>
+                <Image
+                  className={classes.linkLabel}
+                  src="/logo-1.png"
+                  alt="Deholi Store"
+                  width={120}
+                  height={40}
+                />
+                {/* <span className={classes.linkLabel} style={{ fontSize: 20 }}>
                   DeHoli Store
-                </span>
+                </span> */}
               </span>
             </Link>
             <Burger
               className={classes.headerBurger}
-              color={Colors.light_blue}
+              color={Colors.primary_gold}
               onClick={handlers.toggle}
               opened={collapsed}
               title={collapsed ? "Close Navigation" : "Open Navigation"}
