@@ -75,7 +75,7 @@ const NotificationHoverCard: FC = () => {
               component="a"
               radius="xl"
               size={40}
-              color={Colors.light_blue}
+              color={Colors.primary_gold}
             >
               <Bell size={20} />
             </ActionIcon>
@@ -134,10 +134,11 @@ const UserMenu: FC<TUserMenuProps> = ({ userName, position }) => {
         <Menu.Dropdown>
           <Menu.Label>Application</Menu.Label>
           <Menu.Item
-            icon={<Settings size={14} />}
+            icon={<Settings size={14} color={Colors.dark_text} />}
             onClick={() => {
               router.push(getPath("settings"));
             }}
+            color={Colors.dark_text}
           >
             Settings
           </Menu.Item>
