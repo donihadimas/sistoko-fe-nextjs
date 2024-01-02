@@ -13,17 +13,17 @@ export const Footer: FC<{}> = () => {
           bottom: 0,
           right: 0,
           borderTop: `1px solid ${theme.colors.gray[2]}`,
-          backgroundColor: theme.colors.gray[2],
+          backgroundColor: theme.colors.gray[1],
         })}
       >
         <Group spacing="md" noWrap position="right">
           <Text
             style={{
-              fontWeight: "bold",
-              fontSize: "16px",
+              fontWeight: 600,
+              fontSize: "14px",
             }}
           >
-            DeHoli Store @ 2023 - All Rights Reserved
+            Deholi Super Apps @ 2024 - All Rights Reserved
           </Text>
         </Group>
       </Box>
