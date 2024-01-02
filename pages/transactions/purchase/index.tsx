@@ -14,6 +14,7 @@ const Purchase: CustomNextPage = ({
   return (
     <>
       <PageContainer title="Pembelian" fluid withTime>
+
         <Stack spacing="md">
           <PageContent title="">
             <Text>Transaction Purchase Page</Text>
