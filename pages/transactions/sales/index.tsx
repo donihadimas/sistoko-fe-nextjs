@@ -14,7 +14,7 @@ const Sales: CustomNextPage = ({
 }: InferGetServerSidePropsType<typeof getStaticProps>) => {
   return (
     <>
-      <PageContainer title="Penjualan" fluid>
+      <PageContainer title="Penjualan" fluid withTime>
         <Stack spacing="md">
           <PageContent title="">
             <Text>Transaction Sales Page</Text>
