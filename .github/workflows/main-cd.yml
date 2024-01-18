@@ -1,0 +1,23 @@
+name: cd sistoko fe
+on: 
+  push:
+    branches: [main]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /root/workspace/project/sistoko/sistoko-fe-nextjs
+          git pull origin main
+          git status
+          npm install --only=prod
+          pm2 restart sistoko-fe-nextjs
