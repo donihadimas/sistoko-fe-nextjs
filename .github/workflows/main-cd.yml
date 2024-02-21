@@ -11,11 +11,11 @@ jobs:
         
       - name: SSH Deploy
         # Use the 'appleboy/ssh-action' action for SSH deployment
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.0.2
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          ssh-key: ${{ secrets.PRIVATE_KEY }} # Your server's SSH private key
+          password: ${{ secrets.PRIVATE_KEY }} # Your server's SSH private key
           script: |
             cd /root/workspace/project/sistoko/sistoko-fe-nextjs
             git pull origin main
