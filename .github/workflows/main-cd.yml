@@ -22,3 +22,4 @@ jobs:
             npm install --force
             npm run build
             pm2 restart sistoko-fe-nextjs
+        timeout-minutes: 1
