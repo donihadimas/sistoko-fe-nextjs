@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            cd /root/workspace/project/sistoko/sistoko-fe-nextjs
+            cd /root/workspace/project/sistoko-fe-nextjs
             git pull origin main
             npm install --force
             npm run build
