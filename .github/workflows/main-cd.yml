@@ -13,11 +13,11 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PRIVATE_KEY }}
+        password: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
           cd /root/workspace/project/sistoko/sistoko-fe-nextjs
           git pull origin main
-          git status
           npm install
+          npm run build
           pm2 restart sistoko-fe-nextjs
