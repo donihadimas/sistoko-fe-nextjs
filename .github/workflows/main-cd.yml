@@ -15,7 +15,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }} # Your server's IP address
           username: ${{ secrets.USERNAME }} # Your server's username
-          key: ${{ secrets.PRIVATE_KEY }} # Your server's SSH private key
+          password: ${{ secrets.PRIVATE_KEY }} # Your server's SSH private key
           script: |
             cd /root/workspace/project/sistoko/sistoko-fe-nextjs
             git pull origin main
