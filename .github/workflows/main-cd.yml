@@ -7,19 +7,16 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: SSH Deploy
         # Use the 'appleboy/ssh-action' action for SSH deployment
-        uses: appleboy/ssh-action@v1.0.2
+        uses: actions/setup-node@v3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PRIVATE_KEY }} # Your server's SSH private key
+          node-version: 20
           script: |
             cd /root/workspace/project/sistoko/sistoko-fe-nextjs
             git pull origin main
             npm install --force
             npm run build
             pm2 restart sistoko-fe-nextjs
-        timeout-minutes: 5
