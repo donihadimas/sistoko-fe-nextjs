@@ -1,13 +1,13 @@
 import { PageContainer } from "@/components/core/sidebar/PageContainer";
 import { PageContent } from "@/components/core/sidebar/PageContent";
+import TableCategoryProduct from "@/components/modules/management-category-product/TableCategoryProduct";
 import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
-import { Stack, Text } from "@mantine/core";
+import { Stack } from "@mantine/core";
 import {
   CustomNextPage,
   GetStaticProps,
   InferGetServerSidePropsType,
 } from "next";
-import { Heading } from "tabler-icons-react";
 
 const ManagementCategoryProduct: CustomNextPage = ({
   encryptedId,
@@ -17,7 +17,7 @@ const ManagementCategoryProduct: CustomNextPage = ({
       <PageContainer title="Manajemen Kategori Produk" fluid>
         <Stack spacing="md">
           <PageContent title="">
-            <Text>Halaman Manajemen Kategori Produk</Text>
+            <TableCategoryProduct />
           </PageContent>
         </Stack>
       </PageContainer>
