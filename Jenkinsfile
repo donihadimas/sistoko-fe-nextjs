@@ -12,5 +12,10 @@ pipeline {
                 sh 'npm run build' 
             }
         }
+        stage('Deploy Stage') { 
+            steps {
+                sh 'pm2 restart sistoko-fe-nextjs-pipeline' 
+            }
+        }
     }
 }
