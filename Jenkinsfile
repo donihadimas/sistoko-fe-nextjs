@@ -4,7 +4,12 @@ pipeline {
     stages {
         stage('Install Stage') { 
             steps {
-                sh 'npm install' 
+                sh 'npm install --force' 
+            }
+        }
+        stage('Build Stage') { 
+            steps {
+                sh 'npm run build' 
             }
         }
     }
