@@ -1,0 +1,25 @@
+name: cd sistoko fe
+on: 
+  push:
+    branches: [main]
+jobs:
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: SSH Deploy
+        # Use the 'appleboy/ssh-action' action for SSH deployment
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /root/workspace/project/sistoko-fe-nextjs
+            git pull origin main
+            npm install --force
+            npm run build
+            pm2 restart sistoko-fe-nextjs
