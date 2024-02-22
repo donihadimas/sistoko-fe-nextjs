@@ -1,6 +1,7 @@
 import { PageContainer } from "@/components/core/sidebar/PageContainer";
 import { PageContent } from "@/components/core/sidebar/PageContent";
 import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
+import TableEmployee from "@/components/modules/management-employee/TableEmployee";
 import { Stack, Text } from "@mantine/core";
 import {
   CustomNextPage,
@@ -17,7 +18,7 @@ const ManagementEmployee: CustomNextPage = ({
       <PageContainer title="Manajemen Karyawan" fluid>
         <Stack spacing="md">
           <PageContent title="">
-            <Text>Manajemen Karyawan Page</Text>
+            <TableEmployee />
           </PageContent>
         </Stack>
       </PageContainer>
