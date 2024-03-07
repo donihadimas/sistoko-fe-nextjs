@@ -14,8 +14,6 @@ import { FC, useEffect } from "react";
 import { Menu2 } from "tabler-icons-react";
 
 import { LayoutErrorBoundary } from "../LayoutErrorBoundary";
-import { useDispatch, useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
 import { CustomLayout } from "next";
 
 const Header = dynamic(async () => {
