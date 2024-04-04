@@ -12,6 +12,11 @@ pipeline {
                 sh 'npm run build' 
             }
         }
+        stage('Restart Stage') { 
+            steps {
+                sh 'docker container restart sistoko-fe-staging' 
+            }
+        }
     }
     post { 
         success {
