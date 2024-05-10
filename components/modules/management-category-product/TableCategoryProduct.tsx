@@ -77,15 +77,19 @@ const TableCategoryProduct = ({ data }: any) => {
       showUpdatableNotification({ idNotification: "submitCategories" });
       setLoading(true);
       let result;
+      const formData = new FormData();
+      formData.append("categoryName", values.categoryName);
+      formData.append("totalProductInCategory", values.totalProductInCategory);
+      formData.append("categoryImage", values.categoryImage);
       if (currentId) {
         result = await axios.put(
           process.env.NEXT_PUBLIC_API_HOST + `/categories/${currentId}`,
-          values
+          formData
         );
       } else {
         result = await axios.post(
           process.env.NEXT_PUBLIC_API_HOST + "/categories",
-          values
+          formData
         );
       }
       if (result?.status === 201 || result?.status === 200) {
@@ -140,6 +144,7 @@ const TableCategoryProduct = ({ data }: any) => {
     _id: initialData?._id ?? "",
     categoryName: initialData?.categoryName ?? "",
     totalProductInCategory: initialData?.total ?? 0,
+    categoryImage: initialData?.categoryImage ?? "",
   };
 
   const rowElement = dataCategories?.data?.map((item: any, index: number) => {
@@ -291,7 +296,7 @@ const TableCategoryProduct = ({ data }: any) => {
         <Formik initialValues={initialValues} onSubmit={submitCategories}>
           {({ values, setFieldValue, errors, touched }) => {
             return (
-              <Form>
+              <Form encType="multipart/form-data">
                 <Stack>
                   <TextInput
                     placeholder="Masukan Nama Kategori"
@@ -310,6 +315,9 @@ const TableCategoryProduct = ({ data }: any) => {
                   <FileInput
                     placeholder="Pilih Gambar Kategori"
                     label="Gambar Kategori"
+                    onChange={(e) => {
+                      setFieldValue("categoryImage", e);
+                    }}
                   />
                 </Stack>
                 <Space h="md" />
