@@ -13,7 +13,7 @@ const Dashboard: CustomNextPage = ({
 }: InferGetServerSidePropsType<typeof getStaticProps>) => {
   return (
     <>
-      <PageContainer title="Dashboard" fluid withTime>
+      <PageContainer title="Dashboard" fluid>
         <SimpleGrid cols={3} spacing={2}>
           <Box>
             <Text>THIS IS IT</Text>

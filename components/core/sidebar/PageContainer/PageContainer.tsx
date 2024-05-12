@@ -28,15 +28,7 @@ export const PageContainer: FC<PageContainerProps> = ({
   items,
   fluid,
   ContextProvider,
-  withTime = false,
 }) => {
-  const [currentTime, setCurrentTime] = useState("");
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(showCurrentDateTime("dddd, Do MMMM YYYY, HH:MM:ss"));
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
   return (
     <>
       {ContextProvider ? (
@@ -54,7 +46,6 @@ export const PageContainer: FC<PageContainerProps> = ({
 
             <SimpleGrid cols={2}>
               <Title order={1}>{title}</Title>
-              <Text size={"sm"}>{currentTime}</Text>
             </SimpleGrid>
 
             <Space h="xl" />
@@ -76,7 +67,6 @@ export const PageContainer: FC<PageContainerProps> = ({
 
           <Group position="apart">
             <Title order={2}>{title}</Title>
-            {withTime && <Text size={"sm"}>{currentTime}</Text>}
           </Group>
 
           <Space h={"xs"} />
