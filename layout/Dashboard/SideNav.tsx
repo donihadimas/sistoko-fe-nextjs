@@ -8,6 +8,7 @@ import {
   Collapse,
   Center,
   getStylesRef,
+  Image,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
@@ -19,7 +20,6 @@ import router from "next/router";
 import { Colors } from "@/lib/const/color";
 import { LinksGroup } from "@/components/core/sidebar/LinksGroup";
 import { getPath } from "@/lib/const/path";
-import Image from "next/image";
 
 export const useStyles = createStyles<
   string,
