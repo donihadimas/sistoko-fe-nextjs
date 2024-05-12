@@ -8,7 +8,7 @@ const Index: CustomNextPage = () => {
   const router = useRouter();
   useEffect(() => {
     router.push(getPath("dashboard"));
-  }, []);
+  }, [router]);
   return <></>;
 };
 Index.getLayout = DashboardLayout;
