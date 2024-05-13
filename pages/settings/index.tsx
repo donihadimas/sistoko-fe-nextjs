@@ -1,13 +1,11 @@
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
-import { PageContent } from "@/components/core/sidebar/PageContent";
-import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
+import { PageContainer, PageContent } from "@/components/core";
+import { DashboardLayout } from "@/layout/modules";
 import { Stack, Text } from "@mantine/core";
 import {
   CustomNextPage,
   GetStaticProps,
   InferGetServerSidePropsType,
 } from "next";
-import { Heading } from "tabler-icons-react";
 
 const Settings: CustomNextPage = ({
   encryptedId,
@@ -15,7 +13,7 @@ const Settings: CustomNextPage = ({
   return (
     <>
       <PageContainer title="Settings" fluid>
-        <Stack spacing="md">
+        <Stack gap="md">
           <PageContent title="">
             <Text>Settings Page</Text>
           </PageContent>

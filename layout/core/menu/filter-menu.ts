@@ -1,6 +1,9 @@
-import { TMenu } from "./menu";
+import { MenuType } from "./menu";
 
-export const filterMenuByClaims = (menu: TMenu, claims: Array<any>): TMenu => {
+export const filterMenuByClaims = (
+  menu: MenuType[],
+  claims: Array<any>
+): MenuType[] => {
   const claimsPage = claims.map((claim) => claim.page?.toLowerCase());
 
   const claimsFiltered = menu

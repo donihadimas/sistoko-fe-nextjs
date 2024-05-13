@@ -1,19 +1,10 @@
-import { useStyles } from "@/layout/Dashboard/SideNav";
-import { Colors } from "@/lib/const/color";
+import { ParameterType } from "@/layout/core";
 import { Icon } from "@iconify/react";
-import {
-  Collapse,
-  createStyles,
-  getStylesRef,
-  Group,
-  Text,
-  Tooltip,
-  UnstyledButton,
-} from "@mantine/core";
-import Link from "next/link";
+import { Collapse, Group, Stack, Text, UnstyledButton } from "@mantine/core";
 import { useRouter } from "next/router";
-import { SVGAttributes, useState } from "react";
-import { ChevronLeft, ChevronRight } from "tabler-icons-react";
+import { useState } from "react";
+import { ChevronDown } from "tabler-icons-react";
+import classes from "./LinksGroup.module.css";
 
 interface LinksGroupProps {
   icon: string;
@@ -27,46 +18,26 @@ interface LinksGroupProps {
   }[];
   color?: string;
   query?: string;
-  parameter?: Record<string, string>;
-  collapsed?: any;
-  handlers?: any;
-  href: any;
+  parameter?: ParameterType;
+  href: string;
   zone?: boolean;
 }
-
-interface IconProps extends SVGAttributes<SVGElement> {
-  color?: string;
-  size?: string | number;
-}
-
-// const paramsPart = (params: Array<Record<string, string>> | undefined) => {
-const paramsPart = (params: any | undefined) => {
-  if (!params) return;
-  const encoded = Object.keys(params).map(
-    (key: string) =>
-      encodeURIComponent(key) + "=" + encodeURIComponent(params[key])
-  );
-  return encoded.join("&");
-};
 
 export const LinksGroup: React.FC<any> = ({
   icon,
   label,
   links,
-  collapsed,
-  handlers,
   href,
   zone,
-  parameter = {},
+  parameter,
 }: LinksGroupProps) => {
   const [opened, setOpened] = useState(false);
-  const { classes, theme } = useStyles({ collapsed, opened });
   const hasLinks = Array.isArray(links);
-  const ChevronIcon = theme.dir === "ltr" ? ChevronRight : ChevronLeft;
+  const ChevronIcon = ChevronDown;
   const router = useRouter();
   const currentRoute = router.pathname;
   const items = (hasLinks ? links : []).map((link: any) => (
-    <div
+    <UnstyledButton
       onClick={() =>
         zone
           ? window.location.replace(
@@ -75,16 +46,17 @@ export const LinksGroup: React.FC<any> = ({
           : router.push({ pathname: link.href, query: parameter })
       }
       key={link.label}
+      className={currentRoute === link.href ? classes.linkActive : classes.link}
+      pl={"xl"}
+      pr={"xl"}
     >
-      <Text
-        className={
-          currentRoute === link.href ? classes.subLinkActive : classes.subLink
-        }
-        cy-data={link.label}
-      >
-        {link.label}
-      </Text>
-    </div>
+      <Group wrap="nowrap">
+        <Icon icon={link.icon} width={16} />
+        <Text cy-data={link.label} fw={currentRoute === link.href ? 600 : 400}>
+          {link.label}
+        </Text>
+      </Group>
+    </UnstyledButton>
   ));
 
   return (
@@ -92,7 +64,6 @@ export const LinksGroup: React.FC<any> = ({
       <UnstyledButton
         onClick={() => {
           if (hasLinks) {
-            handlers.open();
             setOpened((o: boolean) => !o);
           } else
             zone
@@ -101,37 +72,38 @@ export const LinksGroup: React.FC<any> = ({
                 )
               : router.push({ pathname: href, query: parameter });
         }}
-        className={
-          currentRoute.startsWith(href) ? classes.linkActive : classes.control
-        }
+        className={currentRoute === href ? classes.linkActive : classes.link}
         cy-data={hasLinks ? label : href}
+        px={"lg"}
       >
-        <Group position="apart" align={"center"}>
+        <Group justify="space-between" align={"center"}>
           <a>
             <Group
-              position="apart"
+              justify="space-between"
               style={{ flexWrap: "nowrap" }}
               align={"center"}
             >
               <Icon icon={icon} width={16} />
-              <div className={classes.linkLabel}>{label}</div>
+              <Text fw={currentRoute === href ? 600 : 400}>{label}</Text>
             </Group>
           </a>
 
-          {hasLinks && collapsed && (
+          {hasLinks && (
             <ChevronIcon
-              className={classes.chevron}
               size={18}
               style={{
-                transform: opened
-                  ? `rotate(${theme.dir === "rtl" ? -90 : 90}deg)`
-                  : "none",
+                transform: opened ? `rotate(-180deg)` : "none",
+                transition: "transform 0.3s ease-in-out",
               }}
             />
           )}
         </Group>
       </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+      {hasLinks ? (
+        <Collapse in={opened}>
+          <Stack>{items}</Stack>
+        </Collapse>
+      ) : null}
     </>
   );
 };

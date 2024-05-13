@@ -7,6 +7,7 @@ import {
   updateFailedNotification,
   updateSuccessNotification,
 } from "@/utils/notificationsUtils";
+import { Table } from "@mantine/core";
 import {
   ActionIcon,
   Button,
@@ -22,7 +23,6 @@ import {
   Skeleton,
   Space,
   Stack,
-  Table,
   TextInput,
   Tooltip,
 } from "@mantine/core";
@@ -40,7 +40,7 @@ import axios from "axios";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 
-const TableCategoryProduct = ({ data }: any) => {
+export const TableCategoryProduct = ({ data }: any) => {
   const [modalCategory, setModalCategory] = useState(false);
   const [modalConfirmDelete, setModalConfirmDelete] = useState(false);
   const [initialData, setInitialData] = useState<any>(null);
@@ -155,12 +155,12 @@ const TableCategoryProduct = ({ data }: any) => {
   const rowElement = dataCategories?.data?.map((item: any, index: number) => {
     const rowNum = (page - 1) * pageSize + index + 1;
     return (
-      <tr key={item?._id} style={{ textAlign: "center" }}>
-        <td>{rowNum}</td>
-        <td>{item?.categoryName}</td>
-        <td>{item?.totalProductInCategory + " item"}</td>
-        <td>
-          <Group position="center" spacing={"xs"}>
+      <Table.Tr key={item?._id} style={{ textAlign: "center" }}>
+        <Table.Td>{rowNum}</Table.Td>
+        <Table.Td>{item?.categoryName}</Table.Td>
+        <Table.Td>{item?.totalProductInCategory + " item"}</Table.Td>
+        <Table.Td>
+          <Group justify="center" gap={"md"}>
             <ActionIcon
               color="blue"
               variant="outline"
@@ -184,16 +184,16 @@ const TableCategoryProduct = ({ data }: any) => {
               <IconTrash size="1rem" />
             </ActionIcon>
           </Group>
-        </td>
-      </tr>
+        </Table.Td>
+      </Table.Tr>
     );
   });
 
   return (
     <>
-      <Group position="right" my={"md"}>
+      <Group justify="flex-end" my={"md"}>
         <Button
-          leftIcon={<IconPlus size={"15px"} />}
+          leftSection={<IconPlus size={"15px"} />}
           onClick={() => {
             setModalCategory(true);
             setCurrentId("");
@@ -204,7 +204,7 @@ const TableCategoryProduct = ({ data }: any) => {
         </Button>
       </Group>
 
-      <Group my={"md"} position="apart">
+      <Group my={"md"} justify="space-between">
         <SimpleGrid cols={2} sx={{ alignItems: "center" }} spacing={"xs"}>
           <Input
             placeholder="Cari Kategori"
@@ -222,7 +222,7 @@ const TableCategoryProduct = ({ data }: any) => {
             <IconSearch size="1.125rem" />
           </ActionIcon>
         </SimpleGrid>
-        <Flex align={"end"} gap={"sm"}>
+        <Group align="end" gap={"sm"}>
           <Select
             label="Tampilkan"
             size="xs"
@@ -242,54 +242,60 @@ const TableCategoryProduct = ({ data }: any) => {
               )}{" "}
             </ActionIcon>
           </Tooltip>
-        </Flex>
+        </Group>
       </Group>
       {listLayout.label === "List" && (
         <>
-          <Table striped highlightOnHover withBorder withColumnBorders>
-            <thead>
-              <tr>
-                <th style={{ width: "5%", textAlign: "center" }}>No</th>
-                <th style={{ textAlign: "center" }}>Kategori Produk</th>
-                <th style={{ textAlign: "center", width: "25%" }}>
+          <Table highlightOnHover striped>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th style={{ width: "5%", textAlign: "center" }}>
+                  No
+                </Table.Th>
+                <Table.Th style={{ textAlign: "center" }}>
+                  Kategori Produk
+                </Table.Th>
+                <Table.Th style={{ textAlign: "center", width: "25%" }}>
                   Total Produk Dalam Kategori
-                </th>
-                <th style={{ width: "15%", textAlign: "center" }}>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
+                </Table.Th>
+                <Table.Th style={{ width: "15%", textAlign: "center" }}>
+                  Aksi
+                </Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
               {!isRefetchingDataCategories &&
                 dataCategories?.data?.length > 0 &&
                 rowElement}
               {!isRefetchingDataCategories && !dataCategories?.data?.length && (
-                <tr>
-                  <td colSpan={4}>
+                <Table.Tr>
+                  <Table.Td colSpan={4}>
                     <Center>Tidak ada data kategori ditemukan</Center>
-                  </td>
-                </tr>
+                  </Table.Td>
+                </Table.Tr>
               )}
               {isRefetchingDataCategories &&
                 Array.from({ length: dataCategories?.data?.length || 1 }).map(
                   (_, index) => (
-                    <tr key={index}>
-                      <td style={{ textAlign: "center" }}>
+                    <Table.Tr key={index}>
+                      <Table.Td style={{ textAlign: "center" }}>
                         <Skeleton height={20} />
-                      </td>
-                      <td>
+                      </Table.Td>
+                      <Table.Td>
                         <Skeleton height={20} />
-                      </td>
-                      <td style={{ textAlign: "center" }}>
+                      </Table.Td>
+                      <Table.Td style={{ textAlign: "center" }}>
                         <Skeleton height={20} />
-                      </td>
-                      <td style={{ textAlign: "center" }}>
+                      </Table.Td>
+                      <Table.Td style={{ textAlign: "center" }}>
                         <Skeleton height={20} />
-                      </td>
-                    </tr>
+                      </Table.Td>
+                    </Table.Tr>
                   )
                 )}
-            </tbody>
+            </Table.Tbody>
           </Table>
-          <Group position="right" my={"md"}>
+          <Group justify="flex-end" my={"md"}>
             <Pagination
               total={Math.ceil(dataCategories?.totalData / parseInt(pageSize))}
               defaultValue={page}
@@ -362,7 +368,7 @@ const TableCategoryProduct = ({ data }: any) => {
                   />
                 </Stack>
                 <Space h="md" />
-                <Group position={"right"} spacing={"xs"}>
+                <Group justify="flex-end" gap={"xs"}>
                   <Button type="submit" size="xs" loading={loading}>
                     Simpan
                   </Button>
@@ -404,5 +410,3 @@ const TableCategoryProduct = ({ data }: any) => {
     </>
   );
 };
-
-export default TableCategoryProduct;

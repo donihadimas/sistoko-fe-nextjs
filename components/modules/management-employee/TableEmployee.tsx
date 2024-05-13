@@ -1,7 +1,6 @@
 import {
   ActionIcon,
   Button,
-  FileInput,
   Group,
   Modal,
   Select,
@@ -13,7 +12,7 @@ import {
 import { IconPencil, IconPlus, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
-const TableEmployee = ({ data }: any) => {
+export const TableEmployee = ({ data }: any) => {
   const [modalEmployee, setModalEmployee] = useState(false);
   const [initialData, setInitialData] = useState<any>(null);
   const [currentId, setCurrentId] = useState<string>("");
@@ -47,15 +46,15 @@ const TableEmployee = ({ data }: any) => {
 
   const rowElement = elements?.map((item: any, index: number) => {
     return (
-      <tr key={item?.id}>
-        <td>{index + 1}</td>
-        <td>{item?.userName}</td>
-        <td>{item?.fullName}</td>
-        <td>{item?.telp}</td>
-        <td>{item?.address}</td>
-        <td>{item?.role}</td>
-        <td>
-          <Group position="center" spacing={"xs"}>
+      <Table.Tr key={item?.id}>
+        <Table.Td>{index + 1}</Table.Td>
+        <Table.Td>{item?.userName}</Table.Td>
+        <Table.Td>{item?.fullName}</Table.Td>
+        <Table.Td>{item?.telp}</Table.Td>
+        <Table.Td>{item?.address}</Table.Td>
+        <Table.Td>{item?.role}</Table.Td>
+        <Table.Td>
+          <Group justify="center" gap={"xs"}>
             <ActionIcon
               color="blue"
               variant="outline"
@@ -75,34 +74,36 @@ const TableEmployee = ({ data }: any) => {
               <IconTrash size="1rem" />
             </ActionIcon>
           </Group>
-        </td>
-      </tr>
+        </Table.Td>
+      </Table.Tr>
     );
   });
   return (
     <>
-      <Group position="right" my={"md"}>
+      <Group justify="flex-end" my={"md"}>
         <Button
-          leftIcon={<IconPlus size={"15px"} />}
+          leftSection={<IconPlus size={"15px"} />}
           variant="outline"
           onClick={() => setModalEmployee(true)}
         >
           Tambah Karyawan
         </Button>
       </Group>
-      <Table striped highlightOnHover withBorder withColumnBorders>
-        <thead>
-          <tr>
-            <th style={{ width: "5%", textAlign: "center" }}>No</th>
-            <th style={{ textAlign: "center" }}>Username</th>
-            <th style={{ textAlign: "center" }}>Nama Lengkap</th>
-            <th style={{ textAlign: "center" }}>Nomor Telepon</th>
-            <th style={{ textAlign: "center" }}>Alamat</th>
-            <th style={{ textAlign: "center" }}>Jabatan</th>
-            <th style={{ width: "15%", textAlign: "center" }}>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>{rowElement}</tbody>
+      <Table striped highlightOnHover>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th style={{ width: "5%", textAlign: "center" }}>No</Table.Th>
+            <Table.Th style={{ textAlign: "center" }}>Username</Table.Th>
+            <Table.Th style={{ textAlign: "center" }}>Nama Lengkap</Table.Th>
+            <Table.Th style={{ textAlign: "center" }}>Nomor Telepon</Table.Th>
+            <Table.Th style={{ textAlign: "center" }}>Alamat</Table.Th>
+            <Table.Th style={{ textAlign: "center" }}>Jabatan</Table.Th>
+            <Table.Th style={{ width: "15%", textAlign: "center" }}>
+              Aksi
+            </Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rowElement}</Table.Tbody>
       </Table>
 
       {/* Modal Add Employee */}
@@ -154,7 +155,7 @@ const TableEmployee = ({ data }: any) => {
           />
         </Stack>
         <Space h="md" />
-        <Group position={"right"} spacing={"xs"}>
+        <Group justify="flex-end" gap={"xs"}>
           <Button variant="outline" size="xs">
             Simpan
           </Button>
@@ -176,5 +177,3 @@ const TableEmployee = ({ data }: any) => {
     </>
   );
 };
-
-export default TableEmployee;
