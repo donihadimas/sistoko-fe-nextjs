@@ -1,6 +1,5 @@
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
-import { PageContent } from "@/components/core/sidebar/PageContent";
-import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
+import { PageContainer, PageContent } from "@/components/core";
+import { DashboardLayout } from "@/layout/modules";
 import { Stack, Text } from "@mantine/core";
 import {
   CustomNextPage,
@@ -14,8 +13,7 @@ const Purchase: CustomNextPage = ({
   return (
     <>
       <PageContainer title="Pembelian" fluid withTime>
-
-        <Stack spacing="md">
+        <Stack gap="md">
           <PageContent title="">
             <Text>Transaction Purchase Page</Text>
           </PageContent>

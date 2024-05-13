@@ -1,6 +1,6 @@
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
+import { PageContainer } from "@/components/core";
+import { DashboardLayout } from "@/layout/modules";
 
-import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
 import { Box, SimpleGrid, Text } from "@mantine/core";
 import {
   CustomNextPage,
@@ -26,7 +26,7 @@ const Dashboard: CustomNextPage = ({
 
 Dashboard.getLayout = DashboardLayout;
 
-export const getStaticProps: GetStaticProps = async () => {
+const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       claimType: {

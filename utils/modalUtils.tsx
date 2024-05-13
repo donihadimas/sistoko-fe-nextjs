@@ -42,7 +42,7 @@ export const OpenDeleteModal = ({
       centered
     >
       <Text>Apakah Anda Yakin Akan Menghapus Data {title}</Text>
-      <Group position="right" mt={"xl"}>
+      <Group justify="flex-end" mt={"xl"}>
         <Button color="red" size="xs" onClick={confirm}>
           Hapus Data
         </Button>

@@ -1,0 +1,29 @@
+.linkActive {
+  border-end-start-radius: 10px;
+  border-start-start-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  border-end-start-radius: 10px;
+  border-start-start-radius: 10px;
+  background-color: rgba(212, 182, 113, 0.2);
+  color: #d4b671;
+  border-right: 5px solid #d4b671;
+  transition: width 0.2s linear;
+}
+.link {
+  font-weight: 500;
+  text-decoration: none;
+  color: #9f9f9f;
+  border-end-start-radius: 10px;
+  border-start-start-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: background-color 0.3s ease, color 0.2s ease,
+    border-right 0.2s ease;
+}
+.link:hover {
+  background-color: rgba(212, 182, 113, 0.2);
+  color: #d4b671;
+  border-right: 5px solid #d4b671;
+}

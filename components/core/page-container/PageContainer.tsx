@@ -1,4 +1,3 @@
-import { showCurrentDateTime } from "@/utils/formatter/datetimeFormater";
 import {
   Anchor,
   Breadcrumbs,
@@ -7,12 +6,11 @@ import {
   Group,
   SimpleGrid,
   Space,
-  Text,
   Title,
 } from "@mantine/core";
 
 import Link from "next/link";
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode } from "react";
 
 type PageContainerProps = {
   children: ReactNode;
@@ -65,7 +63,7 @@ export const PageContainer: FC<PageContainerProps> = ({
             </Breadcrumbs>
           ) : null}
 
-          <Group position="apart">
+          <Group justify="space-between">
             <Title order={2}>{title}</Title>
           </Group>
 
