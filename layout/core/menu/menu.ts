@@ -1,34 +1,40 @@
 import { getPath } from "@/lib/const/path";
-import { IconX } from "@tabler/icons-react";
 
-export const MenuItem = [
+export type ParameterType = {
+  action: string;
+};
+export type MenuType = {
+  id: string;
+  label: string;
+  icon?: string;
+  href?: string;
+  parameter?: ParameterType;
+  links?: MenuType[];
+};
+export const MenuItem: MenuType[] = [
   {
     id: "dashboard",
     label: "Dashboard",
     icon: "bi:house-check",
     href: getPath("dashboard"),
-    // parameter: { action: "list" },
   },
   {
     id: "transactions_sales",
     label: "Penjualan",
     icon: "bi:cart",
     href: getPath("transactions_sales"),
-    // parameter: { action: "list" },
   },
   {
     id: "transactions_purchase",
     label: "Pembelian",
     icon: "bi:bag",
     href: getPath("transactions_purchase"),
-    // parameter: { action: "list" },
   },
   {
     id: "report",
     label: "Laporan",
     icon: "bi:list-check",
     href: getPath("report"),
-    // parameter: { action: "list" },
   },
   {
     id: "master_data",
@@ -45,29 +51,31 @@ export const MenuItem = [
       {
         id: "md_management_product",
         label: "Manajemen Produk",
+        icon: "bi:database-gear",
         href: getPath("md_management_product"),
         parameter: { action: "list" },
       },
       {
         id: "md_management_supplier",
         label: "Manajemen Supplier",
+        icon: "bi:database-gear",
         href: getPath("md_management_supplier"),
         parameter: { action: "list" },
       },
       {
         id: "md_management_stock",
         label: "Manajemen Stok",
+        icon: "bi:database-gear",
         href: getPath("md_management_stock"),
         parameter: { action: "list" },
       },
       {
         id: "md_management_employee",
         label: "Manajemen Karyawan",
+        icon: "bi:database-gear",
         href: getPath("md_management_employee"),
         parameter: { action: "list" },
       },
     ],
   },
 ];
-
-export type TMenu = typeof MenuItem;

@@ -1,7 +1,6 @@
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
-import { PageContent } from "@/components/core/sidebar/PageContent";
-import TableCategoryProduct from "@/components/modules/management-category-product/TableCategoryProduct";
-import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
+import { PageContainer, PageContent } from "@/components/core";
+import { TableCategoryProduct } from "@/components/modules";
+import { DashboardLayout } from "@/layout/modules";
 import { Stack } from "@mantine/core";
 import {
   CustomNextPage,
@@ -15,7 +14,7 @@ const ManagementCategoryProduct: CustomNextPage = ({
   return (
     <>
       <PageContainer title="Manajemen Kategori Produk" fluid>
-        <Stack spacing="md">
+        <Stack gap="md">
           <PageContent title="">
             <TableCategoryProduct />
           </PageContent>

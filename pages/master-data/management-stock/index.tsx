@@ -1,6 +1,5 @@
-import { PageContainer } from "@/components/core/sidebar/PageContainer";
-import { PageContent } from "@/components/core/sidebar/PageContent";
-import { DashboardLayout } from "@/layout/Dashboard/DashboardLayout";
+import { PageContainer, PageContent } from "@/components/core";
+import { DashboardLayout } from "@/layout/modules";
 import { Stack, Text } from "@mantine/core";
 import {
   CustomNextPage,
@@ -15,7 +14,7 @@ const ManagementStock: CustomNextPage = ({
   return (
     <>
       <PageContainer title="Manajemen Stok" fluid>
-        <Stack spacing="md">
+        <Stack gap="md">
           <PageContent title="">
             <Text>Manajemen Stok Page</Text>
           </PageContent>

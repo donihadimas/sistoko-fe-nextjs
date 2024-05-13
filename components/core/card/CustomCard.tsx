@@ -11,8 +11,8 @@ const CustomCard = () => {
         />
       </Card.Section>
 
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Norway Fjord Adventures</Text>
+      <Group justify="space-between" mt="md" mb="xs">
+        <Text>Norway Fjord Adventures</Text>
         <Badge color="pink" variant="light">
           On Sale
         </Badge>
